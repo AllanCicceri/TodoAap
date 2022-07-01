@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp/components/tasks_list.dart';
-import 'package:todoapp/models/Task.dart';
+import 'package:todoapp/models/task_model.dart';
+import 'components/task_card.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,12 +9,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<Task> _tasksList = [];
+  final List<TaskModel> _tasksList = [];
 
   _addTask() {
-    print('teste');
     setState(() {
-      Task myTask = Task('dsadsad', 'vo', 'vovozinhanha');
+      TaskModel myTask = TaskModel('dsadsad', 'vo', 'vovozinhanha');
 
       _tasksList.add(myTask);
     });
@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ToDo List'),
+        title: Text('ToDoList'),
         actions: [
           Container(
               padding: EdgeInsets.all(10),
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
           ? Text('No tasks today')
           : Column(
               children: _tasksList.map((task) {
-                return Text(task.title);
+                return Task(task.title, task.description);
               }).toList(),
             ),
     );
