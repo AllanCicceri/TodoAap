@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/components/task_form.dart';
 import 'package:todoapp/components/tasks_list.dart';
 import 'package:todoapp/models/task_model.dart';
 import 'components/task_card.dart';
@@ -10,6 +11,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final List<TaskModel> _tasksList = [];
+
+  _showAddTaskFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return TaskForm();
+        });
+  }
 
   _addTask() {
     setState(() {
@@ -28,7 +37,7 @@ class _HomeState extends State<Home> {
           Container(
               padding: EdgeInsets.all(10),
               child: FloatingActionButton(
-                onPressed: _addTask,
+                onPressed: () => _showAddTaskFormModal(context),
                 child: Icon(
                   Icons.add,
                   color: Colors.blue,
