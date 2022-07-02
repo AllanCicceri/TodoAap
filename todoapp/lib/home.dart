@@ -12,20 +12,20 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final List<TaskModel> _tasksList = [];
 
-  _showAddTaskFormModal(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return TaskForm();
-        });
-  }
-
-  _addTask() {
+  _addTask(String title, String desc) {
     setState(() {
       TaskModel myTask = TaskModel('dsadsad', 'vo', 'vovozinhanha');
 
       _tasksList.add(myTask);
     });
+  }
+
+  _showAddTaskFormModal(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return TaskForm(_addTask);
+        });
   }
 
   @override
